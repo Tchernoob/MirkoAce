@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -30,6 +32,14 @@ class User
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
+
+    #[ORM\OneToMany(mappedBy: 'drawer', targetEntity: Flash::class)]
+    private Collection $flashes;
+
+    public function __construct()
+    {
+        $this->flashes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -104,6 +114,36 @@ class User
     public function setCreatedAt(\DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Flash>
+     */
+    public function getFlashes(): Collection
+    {
+        return $this->flashes;
+    }
+
+    public function addFlash(Flash $flash): self
+    {
+        if (!$this->flashes->contains($flash)) {
+            $this->flashes->add($flash);
+            $flash->setDrawer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFlash(Flash $flash): self
+    {
+        if ($this->flashes->removeElement($flash)) {
+            // set the owning side to null (unless already changed)
+            if ($flash->getDrawer() === $this) {
+                $flash->setDrawer(null);
+            }
+        }
 
         return $this;
     }

@@ -25,6 +25,10 @@ class Flash
     #[ORM\ManyToOne(inversedBy: 'flashes')]
     private ?Category $id_category = null;
 
+    #[ORM\ManyToOne(inversedBy: 'flashes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $drawer = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +78,18 @@ class Flash
     public function setIdCategory(?Category $id_category): self
     {
         $this->id_category = $id_category;
+
+        return $this;
+    }
+
+    public function getDrawer(): ?User
+    {
+        return $this->drawer;
+    }
+
+    public function setDrawer(?User $drawer): self
+    {
+        $this->drawer = $drawer;
 
         return $this;
     }
