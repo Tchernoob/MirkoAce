@@ -36,6 +36,9 @@ class User
     #[ORM\OneToMany(mappedBy: 'drawer', targetEntity: Flash::class)]
     private Collection $flashes;
 
+    #[ORM\Column(length: 255)]
+    private ?string $alias = null;
+
     public function __construct()
     {
         $this->flashes = new ArrayCollection();
@@ -144,6 +147,18 @@ class User
                 $flash->setDrawer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAlias(): ?string
+    {
+        return $this->alias;
+    }
+
+    public function setAlias(string $alias): self
+    {
+        $this->alias = $alias;
 
         return $this;
     }
