@@ -10,12 +10,12 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
-    // private $userPasswordHasherInterface;
+    private $userPasswordHasherInterface;
 
-    // public function __construct (UserPasswordHasherInterface $userPasswordHasherInterface)
-    // {
-    //     $this->userPasswordHasherInterface = $userPasswordHasherInterface;
-    // }
+    public function __construct (UserPasswordHasherInterface $userPasswordHasherInterface)
+    {
+        $this->userPasswordHasherInterface = $userPasswordHasherInterface;
+    }
     
     public function load(ObjectManager $manager): void
     {
@@ -26,7 +26,7 @@ class AppFixtures extends Fixture
         $admin
             ->setFirstName('Chloé')
             ->setLastName('Hertz')
-            ->setPassword($plaintextPassword)
+            ->setPassword($this->userPasswordHasherInterface->hashPassword($admin, 'blabla' ))
             ->setRoles(['ROLE_ADMIN'])
             ->setEmail('chloe.hertz@outlook.fr ')
             ->setAlias('Mirko Ace')

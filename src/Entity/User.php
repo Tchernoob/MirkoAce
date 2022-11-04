@@ -3,13 +3,18 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    private $plainPassword;
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -21,6 +26,9 @@ class User
     #[ORM\Column]
     private array $roles = [];
 
+    /**
+     * @var string The hashed password
+    */
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
@@ -61,9 +69,23 @@ class User
         return $this;
     }
 
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string)$this->email;
+    }
+
+    /**
+     * @see UserInterface
+    */
     public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles;
+        return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
@@ -73,6 +95,28 @@ class User
         return $this;
     }
 
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+    */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        $this->plainPassword = null;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+    */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -161,5 +205,10 @@ class User
         $this->alias = $alias;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->first_name . " " . $this->last_name;
     }
 }

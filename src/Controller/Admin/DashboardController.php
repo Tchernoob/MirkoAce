@@ -13,6 +13,7 @@ class DashboardController extends AbstractDashboardController
 {
     #[Route('/admin', name: 'admin')]
     // Sécuriser la page quand j'ai le rôle de mes Utilisateurs : 
+    // Pour l'instant quand j'essaye de me connecter j'ai une vieille erreur de merde invalid credentials
     // #[IsGranted('ROLE_ADMIN')]
     public function index(): Response
     {
@@ -22,7 +23,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('MirkoAce');
+            ->setTitle('Mirko Ace');
     }
 
     public function configureMenuItems(): iterable
