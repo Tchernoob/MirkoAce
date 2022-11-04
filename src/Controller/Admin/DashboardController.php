@@ -12,8 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class DashboardController extends AbstractDashboardController
 {
     #[Route('/admin', name: 'admin')]
-    // Sécuriser la page quand j'ai le rôle de mes Utilisateurs
-    #[IsGranted('ROLE_ADMIN')]
+    // Sécuriser la page quand j'ai le rôle de mes Utilisateurs : 
+    // #[IsGranted('ROLE_ADMIN')]
     public function index(): Response
     {
         return $this->render('admin/index.html.twig');
