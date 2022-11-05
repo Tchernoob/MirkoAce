@@ -29,6 +29,9 @@ class Flash
     #[ORM\JoinColumn(nullable: false)]
     private ?User $drawer = null;
 
+    #[ORM\Column]
+    private ?bool $available = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Flash
     public function setDrawer(?User $drawer): self
     {
         $this->drawer = $drawer;
+
+        return $this;
+    }
+
+    public function isAvailable(): ?bool
+    {
+        return $this->available;
+    }
+
+    public function setAvailable(bool $available): self
+    {
+        $this->available = $available;
 
         return $this;
     }

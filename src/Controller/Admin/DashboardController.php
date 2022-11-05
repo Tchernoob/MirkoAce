@@ -2,6 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Category;
+use App\Entity\Flash;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -12,9 +15,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class DashboardController extends AbstractDashboardController
 {
     #[Route('/admin', name: 'admin')]
-    // Sécuriser la page quand j'ai le rôle de mes Utilisateurs : 
-    // Pour l'instant quand j'essaye de me connecter j'ai une vieille erreur de merde invalid credentials
-    // #[IsGranted('ROLE_ADMIN')]
+    
+    // Sécuriser la page 
+    #[IsGranted('ROLE_ADMIN')]
     public function index(): Response
     {
         return $this->render('admin/index.html.twig');
@@ -24,11 +27,14 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('Mirko Ace');
+            
     }
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+        yield MenuItem::linkToDashboard('Accueil', 'fa fa-university');
+        yield MenuItem::linkToCrud('Flashs', 'fa fa-area-chart', Flash::class);
+        yield MenuItem::linkToCrud('Catégories', 'fa fa-filter', Category::class);
+        yield MenuItem::linkToCrud('Tatoueurs', 'fa fa-users', User::class);
     }
 }
