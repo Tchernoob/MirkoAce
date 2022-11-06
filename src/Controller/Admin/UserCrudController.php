@@ -35,12 +35,12 @@ class UserCrudController extends AbstractCrudController
             yield IdField::new('id')
                 ->hideOnForm(),
             yield TextField::new('alias'),
-            yield TextField::new('fullName')
+            yield TextField::new('fullName', 'Nom')
                 ->onlyOnIndex(),
             yield TextField::new('email'),
-            yield TextField::new('first_name')
+            yield TextField::new('first_name', 'Prénom')
                 ->hideOnIndex(),
-            yield TextField::new('last_name')
+            yield TextField::new('last_name', 'Nom')
                 ->hideOnIndex(),
             yield ImageField::new('logo')
                 ->setBasePath('uploads/logo')
