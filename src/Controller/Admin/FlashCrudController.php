@@ -34,15 +34,15 @@ class FlashCrudController extends AbstractCrudController
             
             yield IdField::new('id')
                 ->hideOnForm(),
-            yield TextField::new('title'),
-            yield AssociationField::new('id_category'),
-            yield AssociationField::new('drawer'),
+            yield TextField::new('title', 'Titre du Flash'),
+            yield AssociationField::new('id_category', 'Catégorie'),
+            yield AssociationField::new('drawer', 'Dessinateur'),
             yield ImageField::new('image')
                 ->setBasePath('uploads/flash')
                 ->setUploadDir('public/uploads/flash')
                 ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]'),
-            yield TextField::new('year'),
-            yield BooleanField::new('available'),
+            yield TextField::new('year', 'Année'),
+            yield BooleanField::new('available', 'Disponibilité'),
         ];
     }
 }
