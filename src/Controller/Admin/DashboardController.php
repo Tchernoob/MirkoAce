@@ -47,7 +47,8 @@ class DashboardController extends AbstractDashboardController
             ->setAvatarUrl($user->getLogoUrl())
             ->setMenuItems([
                 // à modifier quand j'ai créé la page à propos de Mirko Ace
-                MenuItem::linkToUrl('Mon profil', 'fas fa-user', $this->generateUrl('app_home'))
+                MenuItem::linkToUrl('Mon profil', 'fas fa-user', $this->generateUrl('app_home')),
+                MenuItem::linkToLogout('Logout', 'fa fa-exit'),
             ]);
     }
 

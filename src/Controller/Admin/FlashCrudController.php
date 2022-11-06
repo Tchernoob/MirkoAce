@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Flash;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -41,6 +42,7 @@ class FlashCrudController extends AbstractCrudController
                 ->setUploadDir('public/uploads/flash')
                 ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]'),
             yield TextField::new('year'),
+            yield BooleanField::new('available'),
         ];
     }
 }
