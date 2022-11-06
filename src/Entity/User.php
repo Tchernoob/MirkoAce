@@ -50,6 +50,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $alias = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $logo = null;
+
     public function __construct()
     {
         $this->flashes = new ArrayCollection();
@@ -210,8 +213,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function __toString(): string
+    public function getFullName(): ?string
     {
         return $this->first_name . " " . $this->last_name;
     }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): self
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    public function getLogoUrl(): ?string
+    {
+        if (!$this->logo) {
+            return null;
+        }
+        if (strpos($this->logo, '/') !== false) {
+            return $this->logo;
+        }
+        return sprintf('/uploads/logo/%s', $this->logo);
+    }
+
+    public function __toString() {
+        return $this->alias;
+    }
+
 }

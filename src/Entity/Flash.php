@@ -108,4 +108,15 @@ class Flash
 
         return $this;
     }
+
+    public function getFlashUrl(): ?string
+    {
+        if (!$this->image) {
+            return null;
+        }
+        if (strpos($this->image, '/') !== false) {
+            return $this->image;
+        }
+        return sprintf('/uploads/flash/%s', $this->image);
+    }
 }
