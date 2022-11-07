@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Category;
 use App\Entity\Flash;
 use App\Entity\User;
+use App\Repository\FlashRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -21,12 +22,23 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 
 class DashboardController extends AbstractDashboardController
 {
+    private FlashRepository $flashRepository;
+
+    public function __construct(FlashRepository $flashRepository)
+    {
+        $this->flashRepository = $flashRepository;
+    }
+
      // Sécuriser la page 
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        return $this->render('admin/index.html.twig');
+        $Flashs = $this->flashRepository
+            ->findAll();
+        return $this->render('admin/index.html.twig', [
+            'flashs' => $Flashs,
+        ]);
     }
 
     public function configureDashboard(): Dashboard
@@ -47,7 +59,7 @@ class DashboardController extends AbstractDashboardController
             ->setAvatarUrl($user->getLogoUrl())
             ->setMenuItems([
                 // à modifier quand j'ai créé la page à propos de Mirko Ace
-                MenuItem::linkToUrl('Mon profil', 'fas fa-user', $this->generateUrl('app_home')),
+                MenuItem::linkToCrud('Mon profil', 'fas fa-user', User::class),
                 MenuItem::linkToLogout('Déconnexion', 'fa fa-exit'),
             ]);
     }
@@ -55,9 +67,9 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Accueil', 'fa fa-university');
+        yield MenuItem::linkToDashboard('Mon Profil', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Flashs', 'fa fa-area-chart', Flash::class);
         yield MenuItem::linkToCrud('Catégories', 'fa fa-filter', Category::class);
-        yield MenuItem::linkToCrud('Tatoueurs', 'fa fa-users', User::class);
         yield MenuItem::linkToUrl('Mirko Ace', 'fas fa-home', $this->generateUrl('app_home'));
     }
 
