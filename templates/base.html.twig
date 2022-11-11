@@ -14,10 +14,10 @@
         {% endblock %}
     </head>
     <body>
-            <nav
-                class="navbar navbar-expand-lg navbar-light bg-light px-1"
-                {{ is_granted('ROLE_PREVIOUS_ADMIN') ? 'style="background-color: red !important"' }}
-            >
+        {# <nav
+            class="navbar navbar-expand-lg navbar-light bg-light px-1"
+            {{ is_granted('ROLE_PREVIOUS_ADMIN') ? 'style="background-color: red !important"' }}
+        >
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbar-collapsable">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -27,7 +27,7 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-        {% block body %}{% endblock %}
+        </nav> #}
+        {# {% block body %}{% endblock %} #}
     </body>
 </html>

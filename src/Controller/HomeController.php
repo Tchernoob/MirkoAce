@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoryRepository;
+use App\Repository\FlashRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,10 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/home', name: 'app_home')]
-    public function index(): Response
+    public function index(FlashRepository $fr, CategoryRepository $cr): Response
     {
+        $flashs = $fr->findAll();
+        $categories = $cr->findAll(); 
+
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'flashs' => $flashs,
+            'categories' => $categories
         ]);
     }
 }
