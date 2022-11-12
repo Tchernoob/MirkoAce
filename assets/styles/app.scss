@@ -1,3 +1,17 @@
 @import '~bootstrap/scss/bootstrap';
 
+@import 'partials/reset';
+@import 'partials/vars';
+@import 'partials/fonts';
+@import 'partials/header';
 @import 'partials/admin';
+
+
+html, body {
+    background-color: $black;
+    color: $priolet;
+    margin: 0;
+    min-height: 100%;
+    font-family: 'Julius Sans One', sans-serif;
+    line-height: 1;
+}

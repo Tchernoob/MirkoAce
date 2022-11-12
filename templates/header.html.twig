@@ -1,0 +1,38 @@
+{% block javascripts %}
+    {{ encore_entry_script_tags('navigation') }}
+{% endblock %}
+
+<header>
+    <div class="overlay-navigation">
+        <nav role="navigation">
+            <ul>
+            <li><a href="#" data-content="Jette un oeil à mon actualité">Accueil</a></li>
+            <li><a href="#" data-content="Animaux, Carnes, Armes, Références...">Flashs</a></li>
+            <li><a href="#" data-content="Trouve ton bonheur">Catégories</a></li>
+            {# <li><a href="#" data-content="Only the finest">Works</a></li> #}
+            <li><a href="#" data-content="Prends rendez-vous, passes moi une commande">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <section class="home">
+        <a href="/" target="_blank" class="logo-anchor">MIRKO ACE <span class="title-work"> - Tattoo Artist</span></a>
+        <div class="open-overlay">
+            <span class="bar-top"></span>
+            <span class="bar-middle"></span>
+            <span class="bar-bottom"></span>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="logo-title">Mirko Ace</h1>
+            <div class="hero-paragraph">
+                <p class="presentation-title">
+                    Tatoueuse - Tours - Le cabinet Noir 
+                </p>
+            </div>
+            <a href="mailto:hertz.chloe@outlook.fr?subject=Contact" class="email-hdr">
+                <p class="email-title">mirko.ace@gmail.com</p>
+            </a>
+        </div>
+    </section>
+</header>
