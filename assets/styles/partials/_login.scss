@@ -1,0 +1,43 @@
+.login-section{
+    font-family: 'Arima Madurai', cursive;
+    display: flex;
+    flex-direction: column;
+    margin: 5rem;
+    font-size: 1.3rem;
+    letter-spacing: 0.5rem;
+    text-align: center;
+}
+
+.login {
+    font-size: 5rem;
+    text-align: center;
+}
+
+.login-content {
+    padding: 5rem;
+}
+
+.login-label {
+    margin-bottom: 2rem;
+}
+
+.login-input {
+    margin-bottom: 2rem;
+    text-align: center !important;
+    font-size: 2rem !important;
+    height: 4rem !important;
+    border-radius: 0px !important;
+}
+
+.login-btn {
+    height: 4rem !important;
+    width: 50% !important;
+    margin-top: 5rem !important;
+    font-size: 2rem !important;
+    letter-spacing: 1rem;
+    color: $white;
+}
+
+.login-text {
+    margin-top: 1rem;
+}

@@ -4,8 +4,9 @@
 @import 'partials/vars';
 @import 'partials/fonts';
 @import 'partials/header';
+@import 'partials/login';
 @import 'partials/admin';
-
+@import 'partials/gallery';
 
 html, body {
     background-color: $black;
