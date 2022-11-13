@@ -24,6 +24,10 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
+    "engines": {
+        "node": "v18.12.*",
+        "npm": "8.14.*"
+    },
     "dependencies": {
         "jquery": "^3.6.1",
         "velocityjs": "^2.0.6"
