@@ -21,14 +21,12 @@ class AppFixtures extends Fixture
     {
         // Load Admin Mirko Ace
         $admin = new User();
-        // hashed le pwd, marche pas actuellement
-        $plaintextPassword = "Z&nFurieux$3000";
         $admin
-            ->setFirstName('Chloé')
-            ->setLastName('Hertz')
-            ->setPassword($this->userPasswordHasherInterface->hashPassword($admin, 'blabla' ))
+            ->setFirstName('Admin')
+            ->setLastName('Admin')
+            ->setPassword($this->userPasswordHasherInterface->hashPassword($admin, 'MotdePasseAdministrateur' ))
             ->setRoles(['ROLE_ADMIN'])
-            ->setEmail('chloe.hertz@outlook.fr ')
+            ->setEmail('administrateur@test.com')
             ->setAlias('Mirko Ace')
             ->setCreatedAt(new \DateTimeImmutable());
 
