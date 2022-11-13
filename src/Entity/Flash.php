@@ -119,4 +119,5 @@ class Flash
         }
         return sprintf('/uploads/flash/%s', $this->image);
     }
+
 }
