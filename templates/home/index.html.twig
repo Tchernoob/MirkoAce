@@ -11,5 +11,107 @@
 
 	{% include 'header.html.twig' %}
 
+	{# <section class="gallery"> #}
+
+		{# {% for flash in flashs %}
+			<div class="div-gallery">
+				<img src="{{ asset('uploads/flash/'~flash.image)}}" class="gallery-img">
+			</div>
+		{% endfor %} #}
+
+		{# <div class="gallery-wrap">
+			<div class="item item-1"></div>
+			<div class="item item-2"></div>
+			<div class="item item-3"></div>
+		</div>		
+
+		
+
+	</section> #}
+
+		<section class='hero'>
+			<div class='carousel'>
+				<h1>
+					CARNE</br>
+					<span>-</span>
+					</br>
+					<span class="logo-gallery">MIRKO ACE</span>
+				</h1>
+				<button class='shop-btn'>CARNES</button>
+				<img class="pic1" src="{{ asset('img/carneUn.png')}}"/>
+				<img class="pic2" src="{{ asset('img/carne4.png')}}"/>
+			</div>
+
+		</section>
+
+		<section class='hero'>
+			<div class='carousel plants'>
+				<h1>
+					PLANTES</br>
+					<span>-</span>
+					</br>
+					<span class="logo-gallery">MIRKO ACE</span>
+				</h1>
+				<button class='shop-btn'>PLANTES</button>
+				<img class="pic1" src="{{ asset('img/oizo-de-paradis.png')}}"/>
+				<img class="pic2" src="{{ asset('img/plante-carnivore.png')}}"/>
+			</div>
+		</section>
+
+		<section class='hero'>
+			<div class='carousel birds'>
+			<h1>
+				BECS</br>
+				<span>-</span>
+				</br>
+				<span class="logo-gallery">MIRKO ACE</span>
+			</h1>
+			<button class='shop-btn'>BECS</button>
+				<img class="pic1" src="{{ asset('img/flamant-rose.png')}}"/>
+				<img class="pic2" src="{{ asset('img/bec-en-sabot.png')}}"/>
+			</div>
+		</section>
+
+		<section class='hero'>
+			<div class='carousel animals'>
+				<h1>
+				ANIMAUX</br>
+				<span>-</span>
+				</br>
+				<span class="logo-gallery">MIRKO ACE</span>
+			</h1>
+			<button class='shop-btn'>ANIMAUX</button>
+				<img class="pic1" src="{{ asset('img/rhino.png')}}"/>
+				<img class="pic2" src="{{ asset('img/hippo-skull.png')}}"/>
+			</div>
+		</section>
+
+		<div class="title-gallery-carne" id="gallery-nav">
+			<h2 class="title-category">GALLERIE</h2>
+		</div>
+
+		{# {% for flash in flashs %}
+		<p> {{ flash.title}}</p>
+			<div class="div-gallery">
+				<img src="{{ asset('uploads/flash/'~flash.image)}}" class="gallery-img">
+			</div>
+		{% endfor %} #}
+
+		{% for flash in flashs %}
+			<section class='hero'>
+				<div class="flash-info">
+					<p> {{ flash.title}} </p>
+					{% if flash.available %}
+						<p> Disponible</p>
+					{% else %}
+						<p> Déja vendu ! </p>
+					{% endif %}
+				</div>
+				<div class='carousel carousel-gallery'>
+					<img src="{{ asset('uploads/flash/'~flash.image)}}" class="gallery-img">
+				</div>
+			</section>
+		{% endfor %}
+	
 {% endblock %}
 

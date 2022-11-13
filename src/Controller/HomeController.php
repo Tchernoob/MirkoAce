@@ -15,7 +15,6 @@ class HomeController extends AbstractController
     {
         $flashs = $fr->findAll();
         $categories = $cr->findAll(); 
-
         return $this->render('home/index.html.twig', [
             'flashs' => $flashs,
             'categories' => $categories
