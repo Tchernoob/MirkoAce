@@ -40,6 +40,7 @@ class FlashCrudController extends AbstractCrudController
             yield ImageField::new('image')
                 ->setBasePath('uploads/flash')
                 ->setUploadDir('public/uploads/flash')
+                // ->setUploadDir('uploads/flash')
                 ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]'),
             yield TextField::new('year', 'Année'),
             yield BooleanField::new('available', 'Disponibilité'),

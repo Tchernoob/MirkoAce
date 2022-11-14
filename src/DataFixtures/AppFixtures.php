@@ -20,17 +20,28 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         // Load Admin Mirko Ace
-        $admin = new User();
-        $admin
+        // $admin = new User();
+        // // hashed le pwd, marche pas actuellement
+        // $admin
+        //     ->setFirstName('Chloé')
+        //     ->setLastName('Hertz')
+        //     ->setPassword($this->userPasswordHasherInterface->hashPassword($admin, 'blabla' ))
+        //     ->setRoles(['ROLE_ADMIN'])
+        //     ->setEmail('chloe.hertz@outlook.fr ')
+        //     ->setAlias('Mirko Ace')
+        //     ->setCreatedAt(new \DateTimeImmutable());
+
+        $prod = new User();
+        $prod
             ->setFirstName('Admin')
             ->setLastName('Admin')
-            ->setPassword($this->userPasswordHasherInterface->hashPassword($admin, 'MotdePasseAdministrateur' ))
+            ->setPassword($this->userPasswordHasherInterface->hashPassword($prod, 'Administrateur' ))
             ->setRoles(['ROLE_ADMIN'])
-            ->setEmail('administrateur@test.com')
-            ->setAlias('Mirko Ace')
+            ->setEmail('mirko-ace@admin.com')
+            ->setAlias('Admin Mirko Ace')
             ->setCreatedAt(new \DateTimeImmutable());
 
-        $manager->persist($admin);
+        $manager->persist($prod);
         $manager->flush();
     }
 }
